@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///Users/JuanMontemayor/Desktop/Innovaction/calendar.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Stylesheets -->
+    <link href="./Innovaction - Dashboard_files/css" rel="stylesheet">
+    <link href="./Innovaction - Dashboard_files/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./Innovaction - Dashboard_files/bootstrap.min.css">
+    <!-- Scripts -->
+    <script src="./Innovaction - Dashboard_files/jquery.min.js"></script>
+    <script src="./Innovaction - Dashboard_files/bootstrap.min.js"></script> 
+    <title>Innovaction - Dashboard</title>
+    <!-- Navigation Bar -->
+    </head><body class="main" ng-app="rootApp"><nav id="navi">
+      <img class="NaviLogo" href="#index" src="./Innovaction - Dashboard_files/logo.png" align="left" height="52px">
+      <ul class="MyContainer">
+		<input type="text" class="search" name="search" placeholder="Search..">
+        <img class="profileImg" type="button" href="#login" data-toggle="modal" data-target="#login" src="./Innovaction - Dashboard_files/guest.png" height="40px">
+        <li> <div aria-label="Left Align" class="Notifications"> <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> </div> </li>
+       <!-- <c> Welcome, {{User}}</c> -->
+      </ul>
+    </nav>
+  
+
+
+<!--Side Menu-->
+<div class="sideMenu">
+<ul>
+<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b> &nbsp;  </b> Inicio </li>
+<li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <b> &nbsp; Calendario </b></li>
+<li><span class="glyphicon glyphicon-list" aria-hidden="true"></span> <b> &nbsp; Mis Proyectos </b></li>
+<li><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> <b> &nbsp; Tareas </b></li>
+<li><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <b> &nbsp; Equipo </b></li>
+</ul>
+<div> </div> </div>
+<!--Side Menu END-->
+
+
+<!--MAIN CONTAINER-->
+<div class="mainContainer">
+
+<div class="InicioFlag">
+<div class="flag"> <p>Inicio</p></div>
+</div>
+
+<div class="Content">
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget tortor eget arcu dictum ullamcorper. Curabitur condimentum commodo elementum. Nulla ligula lorem, viverra ac risus quis, sodales pharetra urna. Nulla rutrum sem libero, lobortis scelerisque tortor dignissim ut. In sit amet enim magna. Cras orci purus, venenatis eu lorem non, sollicitudin condimentum risus. Etiam non ultrices risus. Proin interdum magna ac vehicula aliquet. Maecenas in turpis non metus porttitor scelerisque. Pellentesque vel ex sit amet nibh elementum vestibulum. Aenean laoreet fermentum imperdiet. Sed ac augue mauris. Etiam id magna ultricies, porttitor massa at, eleifend tellus.
+
+Vivamus tincidunt odio sed mauris vulputate efficitur. Phasellus egestas vulputate augue ut gravida. Duis nibh nibh, facilisis quis enim eu, rutrum suscipit turpis. Nullam molestie nulla vitae justo pellentesque sagittis. Maecenas commodo luctus turpis sollicitudin vehicula. Nunc rhoncus ultrices ligula, quis maximus ligula tempor eu. Curabitur dolor quam, rutrum vitae convallis non, fringilla et nibh. Sed feugiat, neque sed suscipit ultrices, tortor velit volutpat nisi, mollis luctus quam ante quis lectus. Duis congue elit sed odio faucibus imperdiet. Nam tempor maximus aliquam. Quisque et dapibus felis. Duis quis imperdiet libero. Sed posuere non purus at luctus. Proin posuere vel enim nec facilisis. Maecenas ultrices ligula massa, vel lobortis libero consequat nec. Ut commodo urna risus, nec congue lectus porttitor et. </p>
+</div>
+
+<!-- MAIN CONTAINER END-->
+
+
+<!--MODALS-->
+<!-- Profile Modal -->
+    <div class="modal fade" id="login" role="dialog" ng-app="loginApp" ng-controller="loginController">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">My Profile</h4>
+                </div>
+                <div class="modal-body">
+                <div class="ContainerCenter">
+                    <img class="ProfilePicture" src="./Innovaction - Dashboard_files/guest.png" height="100px"><br>                  
+                    <b> Name: Arturo Cantú </b> <br>
+                    <b> School: Tecnológico de Monterrey </b> <br>
+                    <b> email: arturocantu@rocketmail.com </b> <br><br>
+                </div>
+                <div class="modal-footer">
+                 <div class="ContainerCenter">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Logout</button>
+                  </div> </div> </div> </div> </div> </div>
+			<!-- Modal End -->
+
+
+</div></body></html>
