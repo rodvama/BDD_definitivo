@@ -22,34 +22,17 @@
     <?php include 'nav.php';?>
   </head>
 
-
 <body class="main" ng-app="rootApp">
 
 <?php include 'sidebar.php';?>
 <?php include 'search.php';?>
 
- 
 <!--MAIN CONTAINER-->
 <div class="mainContainer">
 <div class="InicioFlag">
 <div class="flag"> <p>Sesiones</p></div>
 </div>
 <div class="Content">
-<style type="text/css">
-ul
-{
-    list-style-type:none;
-    padding:0px;
-    margin:0px;
-}
-li
-{
-    background-image:url(sqpurple.gif);
-    background-repeat:no-repeat;
-    background-position:0px 5px;
-    padding-left:14px;
-}
-</style>
     <!-- Aqui empieza el accordion principal-->
     <div id="accordion" role="tablist" aria-multiselectable="true">
         <div class="card">
@@ -280,8 +263,6 @@ li
             </div>
  
 </div>
- 
- 
  
  
 <!-- MAIN CONTAINER END-->
