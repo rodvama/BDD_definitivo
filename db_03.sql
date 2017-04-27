@@ -1,3 +1,10 @@
+-- INSERT INTO proyectos(Titulo, Descripcion, FInicio, Duracion, IdCampus) VALUES
+-- ('Proyecto 1', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
+-- ('Proyecto 2', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
+-- ('Proyecto 3', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
+-- ('Proyecto 4', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
+-- ('Proyecto 5', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10) ;
+
 -- phpMyAdmin SQL Dump
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/

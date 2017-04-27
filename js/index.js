@@ -1,14 +1,59 @@
 $( document ).ready(function() {
 
-    var loadProjects = function(filtros) {
-      
+    var TiposF = new Array();
+    var currPage = 1;
+    var maxPage = 0;
+
+    var Paginar = function(PageNum, maxPage){
+        var newHTML2 = ""
+        for (i = 1; i <= PageNum; i++) { 
+            newHTML2 += "<button type='button' "
+            if(i == currPage){
+                newHTML2 += "style='font-weight: 900' "
+            }
+            newHTML2 += "aria-label='Page "+i+"' class='btn btn-outline-primary'>"+i+"</button>";
+        }
+
+        $( "#PageB" ).html(newHTML2);
+
+
+        $( "#PageB > :button" ).click(function(){
+            currPage = this.innerText;
+            loadProjects(TiposF, currPage);
+        });
+
+        if(currPage > 1){
+            $("#PrevB").attr('hidden', false);
+        } else {
+            $("#PrevB").attr('hidden', true);
+        }
+
+        if(currPage < maxPage){
+            $("#NextB").attr('hidden', false);
+        } else {
+            $("#NextB").attr('hidden', true);
+        }    
+
+    };
+
+    $( "#PrevB" ).click(function(){
+        currPage--;
+        loadProjects(TiposF, currPage);
+    });
+
+    $( "#NextB" ).click(function(){
+        currPage++;
+        loadProjects(TiposF, currPage);
+    });    
+
+    var loadProjects = function(filtros, page) {
+        console.log("page: "+page);
         console.log( JSON.stringify(filtros) );
 
         var jsonObject = {
             'action' : "GET-PROJECTS",
             'filtros': JSON.stringify(filtros)
         };
-
 
         $.ajax({
             type: "POST",
@@ -24,11 +69,8 @@ $( document ).ready(function() {
 
                 var newHTML = "";
 
-
-
-
-
-                $.each(jsonRecieved.data, function(st, dat){
+                var start = (page-1)*15
+                $.each(jsonRecieved.data.slice(start, start+15), function(st, dat){
 
                     newHTML+=  "  <div class='col-4'>";
                     newHTML+=  "     <div class='card' >";
@@ -43,21 +85,21 @@ $( document ).ready(function() {
 
                 });
 
-
-
-
                 $("#projects").html(newHTML);
+
+                maxPage = jsonRecieved.data.length/15;            
+
+
+                Paginar(Math.ceil(maxPage), maxPage);
 
             },
             error: function(errorMsg){
                 console.log(errorMsg.statusText);
             }
         });
-    }
+    };
 
-    var TiposF = new Array();
-    loadProjects(TiposF);
-
+    loadProjects(TiposF,currPage);
 
 
     var FiltrarTipo = function(filtros) {
@@ -81,10 +123,6 @@ $( document ).ready(function() {
 
                 var newHTML = "";
 
-
-
-
-
                 $.each(jsonRecieved.data, function(st, dat){
 
                     newHTML += "<label class='custom-control custom-checkbox'>";
@@ -105,8 +143,8 @@ $( document ).ready(function() {
                         if( filtros.indexOf(filter) >= 0 ){
                             filtros.splice( filtros.indexOf(filter), 1 );
                         }
-
-                        loadProjects(filtros);
+                        currPage = 1;
+                        loadProjects(filtros, currPage);
 
                         // console.log(filtros);
                     } else {
@@ -119,8 +157,8 @@ $( document ).ready(function() {
                             // filtros.splice( filtros.indexOf(filter), 0, filter );
                             filtros.push( filter );
                         }
-
-                        loadProjects(filtros);
+                        currPage = 1;
+                        loadProjects(filtros, currPage);
 
                         // console.log(filtros);
                     }
@@ -131,9 +169,11 @@ $( document ).ready(function() {
                 console.log(errorMsg.statusText);
             }
         });
-    }
+    };
 
     FiltrarTipo(TiposF);    
+
+
 
     // $(':checkbox').change(function() {
 
