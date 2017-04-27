@@ -9,7 +9,7 @@ $( document ).ready(function() {
         for (i = 1; i <= PageNum; i++) { 
             newHTML2 += "<button type='button' "
             if(i == currPage){
-                newHTML2 += "style='font-weight: 900' "
+                newHTML2+= "style='font-weight: 900' "
             }
             newHTML2 += "aria-label='Page "+i+"' class='btn btn-outline-primary'>"+i+"</button>";
         }
@@ -86,6 +86,7 @@ $( document ).ready(function() {
                 });
 
                 $("#projects").html(newHTML);
+                console.log
 
                 maxPage = jsonRecieved.data.length/15;            
 
