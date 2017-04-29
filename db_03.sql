@@ -1,9 +1,22 @@
 -- INSERT INTO proyectos(Titulo, Descripcion, FInicio, Duracion, IdCampus) VALUES
--- ('Proyecto 1', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
--- ('Proyecto 2', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
--- ('Proyecto 3', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
--- ('Proyecto 4', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10),
--- ('Proyecto 5', 'Descripcion del proyecto', '2015-08-23', 20, 'MTY', 10) ;
+-- ('Proyecto 1', 'Descripcion del proyecto', '2015-08-23', 100, 'MTY'),
+-- ('Proyecto 2', 'Descripcion del proyecto', '2015-08-23', 120, 'MTY'),
+-- ('Proyecto 3', 'Descripcion del proyecto', '2015-08-23', 34, 'GDL'),
+-- ('Proyecto 4', 'Descripcion del proyecto', '2015-08-23', 56, 'PUE'),
+-- ('Proyecto 5', 'Descripcion del proyecto', '2015-08-23', 244, 'MTY') ;
+
+-- INSERT INTO usuarios(Nombre, Apellidos, Nomina_Matricula ,Contrasena, Correo, IdDepartamento) VALUES
+-- ('Rodrigo','Valencia', 'A00123123', '1234','a123@correo.g', 'ECO'),
+-- ('Rodolfo','Simpson', 'A00321321', '4321', 'a321@correo.g', 'FIS'),
+-- ('Por','Que?', 'A123455', '55555', '14@correo.g','MAT'),
+-- ('Esto','Aburrido', 'A0098765', '8888', 'quieneres@correo.g', 'ECO'),
+-- ('','Nosequieneres', 'A000000', '0000', '0000@correo.g', 'COM') ;
+
+-- INSERT INTO colabora_en(Nomina_Matricula, IdProyecto, Rol) VALUES
+-- ('A00123123', '1', '1'),
+-- ('A00123123', '2', '2'),
+-- ('A00123123', '3', '3');
+
 
 -- phpMyAdmin SQL Dump
 -- version 4.6.5.2
@@ -40,7 +53,7 @@ CREATE TABLE `archivos` (
   `Descripcion_Reporte` text,
   `Minuta_Reporte` text,
   `FeSubida` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,7 +76,7 @@ CREATE TABLE `areas_de_innovacion` (
 
 CREATE TABLE `autoriza` (
   `IdProyecto` int(11) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL,
+  `Nomina_Matricula` varchar(20) NOT NULL,
   `FeAutorizada` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -118,7 +131,7 @@ CREATE TABLE `busca` (
 --
 
 CREATE TABLE `colabora_en` (
-  `Nomina/Matricula` varchar(20) NOT NULL,
+  `Nomina_Matricula` varchar(20) NOT NULL,
   `IdProyecto` int(11) NOT NULL,
   `Rol` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -154,7 +167,7 @@ CREATE TABLE `competencias` (
 
 CREATE TABLE `conforman` (
   `IdEquipo` int(11) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -165,7 +178,7 @@ CREATE TABLE `conforman` (
 
 CREATE TABLE `crea` (
   `IdProyecto` int(11) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -221,7 +234,7 @@ CREATE TABLE `intereses` (
 
 CREATE TABLE `le_interesa` (
   `IdInteres` int(11) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -273,7 +286,7 @@ CREATE TABLE `pertenece_a` (
 
 CREATE TABLE `posee` (
   `IdCompetencia` varchar(50) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -324,7 +337,7 @@ CREATE TABLE `rol` (
   `idrol` int(11) NOT NULL,
   `descripcion` text,
   `IdProyecto` int(11) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -353,7 +366,7 @@ CREATE TABLE `solicitudes` (
   `IdSolicitudes` int(11) NOT NULL,
   `Estatus` int(11) NOT NULL COMMENT 'No hay yes/no',
   `Proyecto` int(11) NOT NULL,
-  `Nomina/Matricula` varchar(20) NOT NULL
+  `Nomina_Matricula` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -414,7 +427,7 @@ CREATE TABLE `ubicacion` (
 --
 
 CREATE TABLE `usuarios` (
-  `Nomina/Matricula` varchar(20) NOT NULL,
+  `Nomina_Matricula` varchar(20) NOT NULL,
   `Nombre` text NOT NULL,
   `Apellidos` text NOT NULL,
   `Correo` text NOT NULL,
@@ -433,7 +446,7 @@ CREATE TABLE `usuarios` (
 ALTER TABLE `archivos`
   ADD PRIMARY KEY (`IdArchivo`),
   ADD KEY `Proyecto` (`Proyecto`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `areas_de_innovacion`
@@ -446,7 +459,7 @@ ALTER TABLE `areas_de_innovacion`
 -- Indexes for table `autoriza`
 --
 ALTER TABLE `autoriza`
-  ADD PRIMARY KEY (`Nomina/Matricula`,`FeAutorizada`),
+  ADD PRIMARY KEY (`Nomina_Matricula`,`FeAutorizada`),
   ADD KEY `IdProyecto` (`IdProyecto`);
 
 --
@@ -482,7 +495,7 @@ ALTER TABLE `busca`
 -- Indexes for table `colabora_en`
 --
 ALTER TABLE `colabora_en`
-  ADD PRIMARY KEY (`Nomina/Matricula`,`IdProyecto`),
+  ADD PRIMARY KEY (`Nomina_Matricula`,`IdProyecto`),
   ADD KEY `IdProyecto` (`IdProyecto`);
 
 --
@@ -503,15 +516,15 @@ ALTER TABLE `competencias`
 -- Indexes for table `conforman`
 --
 ALTER TABLE `conforman`
-  ADD PRIMARY KEY (`IdEquipo`,`Nomina/Matricula`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD PRIMARY KEY (`IdEquipo`,`Nomina_Matricula`),
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `crea`
 --
 ALTER TABLE `crea`
-  ADD PRIMARY KEY (`IdProyecto`,`Nomina/Matricula`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD PRIMARY KEY (`IdProyecto`,`Nomina_Matricula`),
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `delimita`
@@ -542,8 +555,8 @@ ALTER TABLE `intereses`
 -- Indexes for table `le_interesa`
 --
 ALTER TABLE `le_interesa`
-  ADD PRIMARY KEY (`IdInteres`,`Nomina/Matricula`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD PRIMARY KEY (`IdInteres`,`Nomina_Matricula`),
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `metas`
@@ -570,8 +583,8 @@ ALTER TABLE `pertenece_a`
 -- Indexes for table `posee`
 --
 ALTER TABLE `posee`
-  ADD PRIMARY KEY (`IdCompetencia`,`Nomina/Matricula`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD PRIMARY KEY (`IdCompetencia`,`Nomina_Matricula`),
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `proyectos`
@@ -594,7 +607,7 @@ ALTER TABLE `requiere`
 ALTER TABLE `rol`
   ADD PRIMARY KEY (`idrol`),
   ADD KEY `IdProyecto` (`IdProyecto`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `sesiones`
@@ -608,7 +621,7 @@ ALTER TABLE `sesiones`
 --
 ALTER TABLE `solicitudes`
   ADD PRIMARY KEY (`IdSolicitudes`),
-  ADD KEY `Nomina/Matricula` (`Nomina/Matricula`);
+  ADD KEY `Nomina_Matricula` (`Nomina_Matricula`);
 
 --
 -- Indexes for table `son_de`
@@ -642,7 +655,7 @@ ALTER TABLE `ubicacion`
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Nomina/Matricula`),
+  ADD PRIMARY KEY (`Nomina_Matricula`),
   ADD KEY `IdDepartamento` (`IdDepartamento`);
 
 --

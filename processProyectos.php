@@ -6,6 +6,7 @@ if(!isset($_POST) || empty($_POST)) {
 	die('Wrong method');
 }
 
+// MODIFICAR ESTE ARCHIVO PARA QUE FUNCIONE CON PDO
 
 require('connectdb.php');
 

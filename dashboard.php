@@ -14,26 +14,27 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Serif">
     <!-- Scripts -->
+<!-- estan de mas -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<!-- estan de mas
     <script src="js/core.js"></script>
     <script src="js/transition.js"></script>
-    <script src="js/background.js"></script>
-    <script src="js/projecto.js"></script>
+    <script src="js/background.js"></script> -->
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!-- <script src="js/jquery-3.2.1.min.js" ></script>
+<script type="js/jquery-slim-min-js"></script>
+<script src="js/dashboard.js"></script> -->
+<!--     <script src="js/projecto.js"></script> -->
+
+<!--     IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-
-
-
 
  <title>Innovaction - Dashboard</title>
     <!-- Navigation Bar -->
     <?php include 'nav.php';?>
   </head>
-
 
 <body class="main" ng-app="rootApp">
 
@@ -41,11 +42,11 @@
 <?php include 'search.php';?>
 
 <!--MAIN CONTAINER-->
-<div class="mainContainer">
+<div class="mainContainer" value='1'>
 
-<!-- <div class="InicioFlag">
+<div class="InicioFlag">
 <div class="flag"> <p>Mis Proyectos</p></div>
-</div> -->
+</div>
 
     <section id= "categorias">
 
@@ -120,10 +121,11 @@
               </div>
             </div>
           </div>
-          
+    
         </div>
       </div>
     </section>
+  </div>
 <!-- MAIN CONTAINER END-->
 
 

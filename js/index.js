@@ -1,8 +1,19 @@
 $( document ).ready(function() {
 
+    //--------------------Paginacion------------
     var TiposF = new Array();
     var currPage = 1;
     var maxPage = 0;
+
+    $( "#PrevB" ).click(function(){ //Pagina anterior
+        currPage--;
+        loadProjects(TiposF, currPage);
+    });
+
+    $( "#NextB" ).click(function(){ //Pagina Siguiente
+        currPage++;
+        loadProjects(TiposF, currPage);
+    }); 
 
     var Paginar = function(PageNum, maxPage){
         var newHTML2 = ""
@@ -33,19 +44,7 @@ $( document ).ready(function() {
         } else {
             $("#NextB").attr('hidden', true);
         }    
-
-    };
-
-    $( "#PrevB" ).click(function(){
-        currPage--;
-        loadProjects(TiposF, currPage);
-    });
-
-    $( "#NextB" ).click(function(){
-        currPage++;
-        loadProjects(TiposF, currPage);
-    });    
-
+    };  
     var loadProjects = function(filtros, page) {
         console.log("page: "+page);
         console.log( JSON.stringify(filtros) );
@@ -62,11 +61,10 @@ $( document ).ready(function() {
             data: jsonObject,
             contentType: "application/x-www-form-urlencoded",
             success: function(jsonRecieved) {
+
                 // console.log(jsonRecieved.status);
                 // console.log(jsonRecieved.data);
-
                 // $('#test').text(jsonRecieved.data);
-
                 var newHTML = "";
 
                 var start = (page-1)*15
@@ -74,7 +72,7 @@ $( document ).ready(function() {
 
                     newHTML+=  "  <div class='col-4'>";
                     newHTML+=  "     <div class='card' >";
-                    newHTML+=  "            <img class='card-img-top'  src='http://localhost/pry/img/prim/"+dat.ImagenA+"'' alt='"+dat.TituloA+"'>";
+                    newHTML+=  "            <img class='card-img-top'  src='http://localhost/BDD_definitivo/img/prim/"+dat.ImagenA+"'' alt='"+dat.TituloA+"'>";
                     newHTML+=  "      <div class='card-block'>";
                     newHTML+=  "        <h4 class='card-title'>"+dat.TituloA+"</h4>";
                     newHTML+=  "        <p class='card-text'>"+dat.DescripcionA+"</p>";
@@ -86,28 +84,22 @@ $( document ).ready(function() {
                 });
 
                 $("#projects").html(newHTML);
-                console.log
 
                 maxPage = jsonRecieved.data.length/15;            
 
-
                 Paginar(Math.ceil(maxPage), maxPage);
-
             },
             error: function(errorMsg){
                 console.log(errorMsg.statusText);
             }
         });
     };
-
     loadProjects(TiposF,currPage);
-
-
     var FiltrarTipo = function(filtros) {
       
         var jsonObject = {
             'action' : "GET-TIPOS"
-        }
+        };
 
 
         $.ajax({
@@ -171,63 +163,5 @@ $( document ).ready(function() {
             }
         });
     };
-
     FiltrarTipo(TiposF);    
-
-
-
-    // $(':checkbox').change(function() {
-
-    //     if(this.checked){
-    //         console.log($(this).closest('label'));
-    //     } else {
-    //         console.log("notok");
-    //     }
-
-    // }); 
-
-	// $( "#button-Rod" ).click(loadProjects());
-
-
-	// $( "#login-Button").click(function(){
-
-	// 	var user = $("#username").val();
-	// 	var password = $("#pass").val();
-
-	// 	var jsonObjectLogin = {
-	// 		'action' : "LOGIN",
-	// 		'user'	  : user,
-	// 		'pass1'  : password
-	// 	}
-
- //        $.ajax({
- //            type: "POST",
- //            url: "data/data.php",
- //            dataType: "json",
- //            data: jsonObjectLogin,
- //            contentType: "application/x-www-form-urlencoded",
- //            success: function(jsonRecieved) {
-
-
- //            	console.log(jsonRecieved);
-
- //            	if (jsonRecieved.status == "SUCCESS"){
- //            		alert("AHUEVOOO"); //SU CODIGO AQUI
- //            		window.location.replace("projects.html");
-
- //            	}
- //            	else
- //            		alert("WRONG");
-
-
- //            },
- //            error: function(errorMsg){
- //                console.log(errorMsg);
- //            }
- //        });
-
-	// });
-
-
 });
-

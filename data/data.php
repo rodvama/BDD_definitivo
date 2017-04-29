@@ -1,7 +1,6 @@
 <?php
 
 	$action = $_POST['action'];
-
 	switch ($action) {
 		case 'GET-PROJECTS':
 			displayProjects();
@@ -11,12 +10,21 @@
 			break;
 		case 'GET-TIPOS':
 			getTipos();
-		
+			break;
+		// case 'SESSIONS':
+		// 	keepSession();
+		// 	break;
+		case 'GET-PROJECTS-DASH':
+		{
+			$page = $_POST['page'];
+			getProjectsDash($page);
+			break;
+		}
 		default:
 			# code...
 			break;
 	}
-
+	//---------------------db_connect----------
 	function db_connect(){
 		$host = "localhost";
 		$dbname = "prueba";
@@ -27,8 +35,7 @@
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 	    return new PDO($dsn,$user,$pass, $opt);
 	}
-
-
+	//--------------------GetTipos------------
 	function GetTipos(){
 		try{
 
@@ -55,7 +62,7 @@
 		}
 		$pdo = null;
 	}
-
+	//------------------displayProjects-------
 	function displayProjects(){
 		try{
 
@@ -70,38 +77,15 @@
 										LEFT JOIN son_de ON Proyectos.IdProyecto = son_de.IdProyecto
 										LEFT JOIN tipo_de_proyecto ON son_de.IdTipo = tipo_de_proyecto.IdTipo
 										WHERE tipo_de_proyecto.Nombre NOT IN $sa");
-			$getProjects -> setFetchMode(PDO::FETCH_ASSOC);
-
-		    // echo ('<table style="width:auto">');
-		    // echo ('<tr>');
-		    // echo ('<th> ID </th>');
-		    // echo ('<th> Titulo </th>');
-		    // echo ('<th> Descripcion </th>');
-		    // echo ('<th> Fecha de Inicio </th>');
-		    // echo ('<th> Duracion </th>');
-		    // echo ('<th> IDCampus </th>');
-		    // echo ('<th> ImageName </th>');
-		    // echo ('</tr>');	
-
-		    // while ($row = $getProjects->fetch() ){
-		    // 	echo ('<tr>');
-		   	// 	echo ('<td>'.$row['IdProyecto'] .'</td>');
-		   	// 	echo ('<td>'.$row['Titulo'] .'</td>');
-		   	// 	echo ('<td>'.$row['Descripcion'] .'</td>');
-		   	// 	echo ('<td>'.$row['FInicio'] .'</td>');
-		   	// 	echo ('<td>'.$row['Duracion'] .'</td>');
-		   	// 	echo ('<td>'.$row['IdCampus'] .'</td>');
-		   	// 	echo ('<td>'.$row['image_name'] .'</td>');
-		   	// 	echo ('</tr>');
-		    // }		
+			$getProjects -> setFetchMode(PDO::FETCH_ASSOC);	
 
 		    $allProyects = array();
 		    $i = 0;
 		    while ($row = $getProjects->fetch() ){
 		    	$response = array( 	
-		    						"TituloA" 	=> $row['Titulo'],
-		    						"DescripcionA"		=> $row['Descripcion'],
-		    						"ImagenA" 	=> $row['image_name'] );
+		    						"TituloA" 		=> $row['Titulo'],
+		    						"DescripcionA"	=> $row['Descripcion'],
+		    						"ImagenA" 		=> $row['image_name'] );
 
 		    	$allProyects[$i] = $response;
 		    	$i++;
@@ -112,24 +96,22 @@
 
 		    echo json_encode($allData);
 
-
 		}
 		catch(PDOException $e){
 			echo $e->getMessage();
 		}
 		$pdo = null;
 	}
-
+	//------------------verifyLogin-----------
 	function verifyLogin(){
 
 		$user = $_POST['user'];
 		$password =  $_POST['pass1'];
 
-
 		try{
 
 			$pdo = db_connect();
-			$loginPdo = $pdo->prepare("SELECT * from usuarios WHERE Nomina = :username AND Contrasena = :password ");
+			$loginPdo = $pdo->prepare("SELECT * from usuarios WHERE Correo = :username AND Contrasena = :password ");
 
 	    	$loginPdo->bindParam(':username', $user );	
 	    	$loginPdo->bindParam(':password', $password );	
@@ -144,20 +126,84 @@
 
 			echo json_encode($response);
 
-
 		}
-
 
 		catch(PDOException $e){
 			echo $e->getMessage();
 		}
 
-
 		$pdo = null;
-
 	}
+	// //------------------keepSession-----------
+	// function keepSession(){
 
-	// echo "Hola" ;
+	// 	ini_set("session.use_cookies","1");  
+	// 	ini_set("session.use_only_cookies","1");  
+	// 	ini_set("session.use_trans_sid","0");  
+	// 	session_start();  
+	// 	header("Cache-control:private");
 
-	// displayProjects();
-?>
+
+	// 	if (isset($_SESSION['autentificado_socio'])) 
+	// 	{  
+	// 	    echo "Bienvenido Sr(a) "$_SESSION['NombreSocio']; 
+	// 	} 
+	// 	else 
+	// 	{ 
+	// 	    header("Location: index2.php"); 
+	// 	    exit; 
+	// 	} 
+
+	// }
+
+	//-----------getProjectDash()---------
+	function getProjectsDash($page) {
+			try {
+				
+				$pdo = db_connect();
+
+				//Usuario de prueba
+				$username = 'A00123123';
+
+				switch ($page) {
+					case 'project':
+					{	
+						$getProjects = $pdo->query("SELECT * FROM proyectos WHERE proyectos.IdProyecto IN( 
+							SELECT IdProyecto FROM colabora_en WHERE colabora_en.Nomina_Matricula = $username)");
+
+						$getProjects -> setFetchMode(PDO::FETCH_ASSOC);	
+		    			$allProyects = array();
+		    			$i = 0;
+		    			while ($row = $getProjects->fetch() ){
+		    			$response = array( 	
+		    						"TituloA" 		=> $row['Titulo'],
+		    						"DescripcionA"	=> $row['Descripcion'],
+		    						"ImagenA" 		=> $row['image_name'] );
+
+		    			$allProyects[$i] = $response;
+		    			$i++;
+		    			}
+						break;
+					}
+					// case 'document':
+					// {
+					// 	break;
+					// }
+					// case 'sessions':
+					// {
+					// 	break;
+					// }
+				}
+		
+
+		    $allData = array(	"status" 	=> "SUCCESS",
+		    					"data"		=> $allProyects);
+
+		    echo json_encode($allData);
+			}
+			catch(PDOException $e){
+				echo $e->getMessage();
+			}
+			$pdo = null;
+		}
+	?>

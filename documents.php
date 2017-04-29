@@ -9,13 +9,18 @@
     <link href="css/main.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
+  <!-- Estan de mas  
     <script src="js/core.js"></script>
     <script src="js/transition.js"></script>
     <script src="js/background.js"></script>
-    <script src="js/projecto.js"></script>
+    <script src="js/projecto.js"></script> -->
+
+  <!--   <script type="js/jquery-slim-min-js"></script>
+    <script src="js/jquery-3.2.1.min.js" ></script>
+    <script src="js/dashboard.js"></script> -->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
@@ -26,7 +31,7 @@
   </head>
 
 
-<body class="main" ng-app="rootApp">
+<body class="main" ng-app="rootApp" id="document">
 
 <?php include 'sidebar.php';?>
 <?php include 'search.php';?>
@@ -76,7 +81,7 @@
 
 <!-- MAIN CONTAINER END-->
 
-<?php include 'user_modal.php';?>
+<?php include 'user_modal.php';?>  
 
 </body>
 

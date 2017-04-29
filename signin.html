@@ -28,7 +28,7 @@
     <link href="css/project.css" rel="stylesheet">
     <link href="css/background.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="carousel.css" rel="stylesheet">
+    <!-- <link href="carousel.css" rel="stylesheet"> -->
     <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">                        
 
@@ -58,7 +58,7 @@
             <a class="nav-link" href="#">INICIO <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="descubrefinal.php">PROYECTOS</a>
+            <a class="nav-link" href="descubrefinal.html">PROYECTOS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="signin.html">LOG IN</a>
@@ -73,15 +73,15 @@
             <div class="card-hola">
               <form class="form-signin">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input id="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input id="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" value="remember-me"> Remember me
                   </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">LOG IN</button>
+                <button id="login-Button" class="btn btn-lg btn-primary btn-block" type="submit">LOG IN</button>
               </form> 
             </div>
         </div>
@@ -114,7 +114,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script><!--Esta script esta mandado un archivo que no existe-->
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -122,7 +122,7 @@
     <script src="js/transition.js"></script>
     <script src="js/background.js"></script>
     <script src="js/projecto.js"></script>
-
+      <script src="js/login.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 </body>

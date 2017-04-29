@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     
-    
+    //No se para que sirve esta archivo
     $(window).scroll(function() {
         var nav = $('#navbarMain');
         var top = 100;

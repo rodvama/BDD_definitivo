@@ -11,18 +11,21 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
+<!--  Estan de mas
     <script src="js/core.js"></script>
     <script src="js/transition.js"></script>
     <script src="js/background.js"></script>
-    <script src="js/projecto.js"></script>
+    <script src="js/projecto.js"></script> -->
+<!--     <script type="js/jquery-slim-min-js"></script>
+    <script src="js/jquery-3.2.1.min.js" ></script>
+    <script src="js/dashboard.js"></script> -->
  
    <title>Innovaction - Dashboard</title>
     <!-- Navigation Bar -->
     <?php include 'nav.php';?>
   </head>
 
-<body class="main" ng-app="rootApp">
+<body class="main" ng-app="rootApp" id="sessions">
 
 <?php include 'sidebar.php';?>
 <?php include 'search.php';?>
@@ -160,9 +163,7 @@
  
             <div id="collapseMain2" class="collapse" role="tabpanel" aria-labelledby="headingMain2">
                 <ul>
-                    <hr>
- 
-                   
+                    <hr>                   
                     <!-- Aqui empieza todo lo que se va a ocultar-->
                         <div id="accordion" role="tablist" aria-multiselectable="true">
                         <li>
@@ -268,6 +269,5 @@
 <!-- MAIN CONTAINER END-->
  
 <?php include 'user_modal.php';?>
- 
 </body>
 </html>
